@@ -6,4 +6,6 @@ class Python(models.Model):
         max_length=15,
     )
     description = models.TextField()
-    image = models.URLField()
+    image = models.ImageField(
+        upload_to='pythons'
+    )

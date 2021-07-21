@@ -14,7 +14,7 @@ def index(request):
 
 def create(request):
     if request.method == 'POST':
-        form = CreatePythonForm(request.POST)
+        form = CreatePythonForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('index')
