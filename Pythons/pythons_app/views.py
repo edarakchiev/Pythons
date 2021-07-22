@@ -26,35 +26,31 @@ def create(request):
     }
     return render(request, 'create.html', context)
 
-#
-# def create(request):
-#     if request.method == "GET":
-#         book = BookForm()
-#         context = {
-#             'book': book,
-#         }
-#         return render(request, 'create.html', context)
-#     book = BookForm(request.POST)
-#     if book.is_valid():
-#         book.save()
-#         return redirect('index')
-#     return render(request, 'create.html')
-#
-#
-# def update(request, pk):
-#     book = Book.objects.get(pk=pk)
-#     if request.method == "GET":
-#         form = BookForm(instance=book)
-#         context = {
-#             'book': form,
-#         }
-#         return render(request, 'create.html', context)
-#     form = BookForm(
-#         request.POST,
-#         instance=book
-#     )
-#     if form.is_valid():
-#         book = form.save()
-#         book.save()
-#         return redirect('index')
-#     return render(request, 'edit.html')
+
+def details(request, pk):
+    python = Python.objects.get(pk=pk)
+    context = {
+        'python':python,
+    }
+    return render(request, 'details.html', context)
+
+
+def edit(request, pk):
+    python = Python.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = CreatePythonForm(request.POST, request.FILES, instance=python)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+        form = CreatePythonForm(instance=python)
+    context = {
+        'form': form
+    }
+    return render(request, 'edit.html', context)
+
+
+def delete(request, pk):
+    python = Python.objects.get(pk=pk)
+    python.delete()
+    return redirect('index')

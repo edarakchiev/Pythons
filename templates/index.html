@@ -9,6 +9,9 @@
                 <h5 class="card-title">{{ python.name }}</h5>
                 <p class="card-text">{{ python.description }}</p>
             </div>
+        <button>
+            <a class="nav-link" href="{% url 'details' python.id %}">Details</a>
+        </button>
         </div>
         {% endfor %}
     </div>

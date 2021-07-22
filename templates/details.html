@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+    </head>
+    <body>
+    <img src="{{ python.image.url }}">
+    <h5 class="card-title">Name: {{ python.name }}</h5>
+    <p class="card-text">Description: {{ python.description }}</p>
+    <div>
+        <a href="{% url 'edit' python.id %}" class="btn btn-primary">Edit</a>
+        <a href="{% url 'delete' python.id %}" class="btn btn-danger">Delete</a>
+    </div>
+    <hr>
+    </body>
+    <hr>
+{% endblock %}
